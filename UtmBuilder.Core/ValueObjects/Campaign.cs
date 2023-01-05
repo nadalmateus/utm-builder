@@ -1,4 +1,5 @@
-﻿using UtmBuilder.Core.ValueObjects.Shared;
+﻿using UtmBuilder.Core.ValueObjects.Exceptions;
+using UtmBuilder.Core.ValueObjects.Shared;
 
 namespace UtmBuilder.Core.ValueObjects;
 public class Campaign : ValueObject
@@ -11,6 +12,10 @@ public class Campaign : ValueObject
         Id = id;
         Term = term;
         Content = content;
+
+        InvalidCampaignException.ThrowIfNull(source, "Source is Invalid");
+        InvalidCampaignException.ThrowIfNull(medium, "Medium is Invalid");
+        InvalidCampaignException.ThrowIfNull(name, "Name is Invalid");
     }
 
     public string Source { get; private set; }
